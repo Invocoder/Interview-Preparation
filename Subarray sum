@@ -1,0 +1,41 @@
+https://leetcode.com/problems/subarray-sum-equals-k/
+https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/hashmap-and-heaps/count-of-subarrays-having-sum-equals-to-k-official/ojquestion
+#include<bits/stdc++.h>
+using namespace std;
+int solution(int arr[] , int k , int n)
+{
+    int ans=0;
+    unordered_map<int , int>map;
+  
+    int sum = 0;
+      map[sum]=1;
+    
+    for(int i=0;i<n;i++)
+    {
+        sum=sum+arr[i];
+        int rsum = sum-k;
+        if(map.find(rsum)!=map.end())
+        {
+            ans= ans+map[rsum];
+        }
+        if(map.find(sum)!=map.end()){
+            map[sum]++;
+        }else{
+            map[sum]=1;
+        }
+    }
+    return ans;
+}
+int main()
+{   
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    int k;
+    cin>>k;
+   cout<<solution(arr,k,n);
+}
